@@ -10,13 +10,17 @@ class Solution(object):
         :type root: TreeNode
         :rtype: TreeNode
         """
-        # Check if root is empty
+        # Check if root is empty at the top to avoid putting the below chunk inside a conditional
         if root == None:
             return root
-        # swapping process...
+        
+        # Destructure in order to avoid defining a holding variable
         root.left, root.right = root.right, root.left
-        # Call the function recursively for the left subtree...
+        
+        # Use recursion on left tree
         self.invertTree(root.left)
-        # Call the function recursively for the right subtree...
+        
+        # Use recursion on right tree
         self.invertTree(root.right)
-        return root     # Return the root...
+        
+        return root
