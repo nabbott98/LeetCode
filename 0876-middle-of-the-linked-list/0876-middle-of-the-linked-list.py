@@ -9,6 +9,7 @@ class Solution(object):
         :type head: ListNode
         :rtype: ListNode
         """
+        # Find the length of the linked list
         temp = head
         count = 0
         while(temp):
@@ -16,7 +17,7 @@ class Solution(object):
             temp = temp.next
 
         count /= 2
-
+        # Go to the middle and return the head
         while(count > 0):
             count -= 1
             head = head.next
