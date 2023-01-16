@@ -14,6 +14,5 @@ class Solution(object):
                 return 1
             else:
                 return 0
-            
-            print(map(even, nums))
+
         return sum(map(even, nums))
