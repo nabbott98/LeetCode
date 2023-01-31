@@ -1,29 +1,27 @@
 /**
  * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
  */
-class Solution {
-public:
-    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        // Check if lists are empty/exist
-         if(list1==NULL){
-             return list2;
-         }if(list2==NULL){
-             return list1;
-         }
-        // Use recursion to solve, check list values and insert lower value
-         if((list1->val)<=(list2->val)){
-            list1->next=mergeTwoLists(list1->next,list2);
-             return list1;
-         }else{
-             list2->next=mergeTwoLists(list2->next,list1);
-             return list2;
-         }
-    }
+/**
+ * @param {ListNode} list1
+ * @param {ListNode} list2
+ * @return {ListNode}
+ */
+var mergeTwoLists = function(l1, l2) {
+        // Check if list is empty or at the end
+    	if(l1 == null) 
+        {return l2}
+		if(l2 == null) 
+        {return l1}
+        // Use recursion, insert lower value into  list
+		if(l1.val < l2.val){
+			l1.next = mergeTwoLists(l1.next, l2)
+			return l1
+		} else{
+			l2.next = mergeTwoLists(l1, l2.next)
+			return l2
+		}
 };
