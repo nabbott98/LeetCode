@@ -1,12 +1,17 @@
 class Solution {
     public boolean isPalindrome(int x) {
-        if (x < 0) return false;
-        int temp = x;
-        int sum = 0;
-        while(x != 0) {
-            sum = (sum * 10) + ( x % 10);
-            x = x / 10;
+        // Convert int into string
+        String stringX = String.valueOf(x);
+        
+        // Find length of string
+        int length = stringX.length() -1;
+        
+        // Iterate through string and check char at each end moving towards middle, if not equal return false
+        for (int i = 0; i < length; i++){
+            if (stringX.charAt(i) != stringX.charAt(length - i)){
+                return false;
+            }
         }
-        return (temp == sum);
+        return true;
     }
 }
