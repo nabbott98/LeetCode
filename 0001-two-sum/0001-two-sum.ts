@@ -1,15 +1,12 @@
-class Solution {
-public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        unordered_map<int, int> mp;
-       
-        for(int i = 0; i < nums.size(); i++){
-            if(mp.find(target - nums[i]) == mp.end())
-                mp[nums[i]] = i;
-            else
-                return {mp[target - nums[i]], i};
+function twoSum(nums: number[], target: number): number[] {
+    let output: number[] = [];
+    
+    for(let i = 0; i < nums.length; i++) {
+        for(let j = i+1; j<nums.length; j++) {
+            if(nums[i]+nums[j] === target) {
+                output.push(i, j);
+                return output;
+            }
         }
- 
-        return {-1, -1};
     }
 };
