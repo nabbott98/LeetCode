@@ -1,24 +1,30 @@
 /**
  * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
  * }
  */
-/**
- * @param {ListNode} head
- * @return {ListNode}
- */
-var deleteDuplicates = function(head) {
-    var current = head;
-    
-    while(current) {
-        if(current.next !== null && current.val == current.next.val) {
-            current.next = current.next.next;
-        } else {
-            current = current.next;
-        }
-    }
-    
-    return head;
+
+function deleteDuplicates(head: ListNode | null): ListNode | null {
+  if (!head) return null
+  if (!head.next) return head
+
+  let prev = head
+  let curr = head.next
+
+  while (curr) {
+    while (curr && curr.val === prev.val) { curr = curr.next as ListNode }
+
+    prev.next = curr
+    prev = curr
+
+    if (curr) { curr = curr.next as ListNode }
+  }
+
+  return head
 };
