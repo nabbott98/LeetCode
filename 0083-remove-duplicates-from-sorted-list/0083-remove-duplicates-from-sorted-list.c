@@ -1,30 +1,21 @@
 /**
  * Definition for singly-linked list.
- * class ListNode {
- *     val: number
- *     next: ListNode | null
- *     constructor(val?: number, next?: ListNode | null) {
- *         this.val = (val===undefined ? 0 : val)
- *         this.next = (next===undefined ? null : next)
- *     }
- * }
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
  */
-
-function deleteDuplicates(head: ListNode | null): ListNode | null {
-  if (!head) return null
-  if (!head.next) return head
-
-  let prev = head
-  let curr = head.next
-
-  while (curr) {
-    while (curr && curr.val === prev.val) { curr = curr.next as ListNode }
-
-    prev.next = curr
-    prev = curr
-
-    if (curr) { curr = curr.next as ListNode }
-  }
-
-  return head
-};
+struct ListNode* deleteDuplicates(struct ListNode* head){
+    if(head==NULL)return NULL;
+    struct ListNode* temp=head,*nextnode;
+    while(temp->next!=0){
+        if(temp->val==temp->next->val){
+            nextnode=temp->next->next;
+            free(temp->next);
+            temp->next=nextnode;
+        }
+        else
+        temp=temp->next;
+    }
+    return head;
+}
