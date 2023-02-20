@@ -1,7 +1,14 @@
-function removeElement(nums: number[], val: number): number {
-  for (let i = 0; i < nums.length; i++) {
-       if (nums[i] === val) { nums.splice(i, 1); i-- }
-  }
-
-  return nums.length
-};
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int i = 0;
+        for (int j = 0; j < nums.length; j++) {
+            if (nums[j] != val) {
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+                i++;
+            }
+        }
+        return i; 
+    }
+}
