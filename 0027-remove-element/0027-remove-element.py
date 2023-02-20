@@ -1,14 +1,14 @@
-class Solution {
-    public int removeElement(int[] nums, int val) {
-        int i = 0;
-        for (int j = 0; j < nums.length; j++) {
-            if (nums[j] != val) {
-                int temp = nums[i];
-                nums[i] = nums[j];
-                nums[j] = temp;
-                i++;
-            }
-        }
-        return i; 
-    }
-}
+class Solution(object):
+    def removeElement(self, nums, val):
+        """
+        :type nums: List[int]
+        :type val: int
+        :rtype: int
+        """
+        k=0
+        for i in range(len(nums)):
+            if nums[i]==val:
+                continue
+            nums[k]=nums[i]
+            k+=1
+        return k
