@@ -1,16 +1,13 @@
-/**
- Do not return anything, modify nums1 in-place instead.
- */
-function merge(nums1: number[], m: number, nums2: number[], n: number): void {
-  n > 0 && nums1.splice(-n)
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int tail1 = m - 1, tail2 = n - 1, finished = m + n - 1;
+        while (tail1 >= 0 && tail2 >= 0) {
+            nums1[finished--] = (nums1[tail1] > nums2[tail2]) ? 
+                                 nums1[tail1--] : nums2[tail2--];
+        }
 
-  nums2.forEach((num) => {
-    let maybeIndex
-
-    if (nums1[0] > num) { maybeIndex = 0 } 
-    else if (nums1[nums1.length - 1] < num) { maybeIndex = nums1.length } 
-    else { maybeIndex = nums1.findIndex((n) => n > num) }
-
-    nums1.splice(maybeIndex, 0, num)
-  })
-};
+        while (tail2 >= 0) { //only need to combine with remaining nums2, if any
+            nums1[finished--] = nums2[tail2--];
+        }
+    }
+}
