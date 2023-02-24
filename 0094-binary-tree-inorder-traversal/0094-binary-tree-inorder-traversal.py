@@ -1,35 +1,26 @@
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
-    public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> list = new ArrayList<Integer>();
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def inorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        result, stack = [], [(root, False)]
 
-        Stack<TreeNode> stack = new Stack<TreeNode>();
-        TreeNode cur = root;
+        while stack:
+            cur, visited = stack.pop()
+            if cur:
+                if visited:
+                    result.append(cur.val)
+                else:
+                    stack.append((cur.right, False))
+                    stack.append((cur, True))
+                    stack.append((cur.left, False))
 
-        while(cur!=null || !stack.empty()){
-            while(cur!=null){
-                stack.add(cur);
-                cur = cur.left;
-            }
-            cur = stack.pop();
-            list.add(cur.val);
-            cur = cur.right;
-        }
-
-        return list;
-    }
-}
+        return result
+        
