@@ -1,26 +1,18 @@
-# Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class Solution(object):
-    def inorderTraversal(self, root):
-        """
-        :type root: TreeNode
-        :rtype: List[int]
-        """
-        result, stack = [], [(root, False)]
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
 
-        while stack:
-            cur, visited = stack.pop()
-            if cur:
-                if visited:
-                    result.append(cur.val)
-                else:
-                    stack.append((cur.right, False))
-                    stack.append((cur, True))
-                    stack.append((cur.left, False))
-
-        return result
-        
+function inorderTraversal(root: TreeNode | null): number[] {
+    if (root === null) return [];
+    return [...inorderTraversal(root.left), root.val, ...inorderTraversal(root.right)];
+};
